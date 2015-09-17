@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListMateriaprimaEmpty}" rendered="#{materiaprimaController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{materiaprimaController.items.rowCount > 0}">
+                        <h:outputText value="#{materiaprimaController.pagination.pageFirstItem + 1}..#{materiaprimaController.pagination.pageLastItem + 1}/#{materiaprimaController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{materiaprimaController.previous}" value="#{bundle.Previous} #{materiaprimaController.pagination.pageSize}" rendered="#{materiaprimaController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{materiaprimaController.next}" value="#{bundle.Next} #{materiaprimaController.pagination.pageSize}" rendered="#{materiaprimaController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{materiaprimaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMateriaprimaTitle_nombre}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMateriaprimaTitle_cantidadMedida}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidadMedida}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMateriaprimaTitle_idMedida}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idMedida}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{materiaprimaController.prepareView}" value="#{bundle.ListMateriaprimaViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{materiaprimaController.prepareEdit}" value="#{bundle.ListMateriaprimaEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{materiaprimaController.destroy}" value="#{bundle.ListMateriaprimaDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{materiaprimaController.prepareCreate}" value="#{bundle.ListMateriaprimaCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ListMateriaprimaIndexLink}"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

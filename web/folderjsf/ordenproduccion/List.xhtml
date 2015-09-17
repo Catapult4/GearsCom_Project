@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOrdenproduccionEmpty}" rendered="#{ordenproduccionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ordenproduccionController.items.rowCount > 0}">
+                    <h:outputText value="#{ordenproduccionController.pagination.pageFirstItem + 1}..#{ordenproduccionController.pagination.pageLastItem + 1}/#{ordenproduccionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ordenproduccionController.previous}" value="#{bundle.Previous} #{ordenproduccionController.pagination.pageSize}" rendered="#{ordenproduccionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ordenproduccionController.next}" value="#{bundle.Next} #{ordenproduccionController.pagination.pageSize}" rendered="#{ordenproduccionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ordenproduccionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenproduccionTitle_fechaOrden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaOrden}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenproduccionTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenproduccionTitle_fechaEntrega}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEntrega}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenproduccionTitle_totalMateria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalMateria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ordenproduccionController.prepareView}" value="#{bundle.ListOrdenproduccionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenproduccionController.prepareEdit}" value="#{bundle.ListOrdenproduccionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenproduccionController.destroy}" value="#{bundle.ListOrdenproduccionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ordenproduccionController.prepareCreate}" value="#{bundle.ListOrdenproduccionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOrdenproduccionIndexLink}"/>
+            </h:form>
+          </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

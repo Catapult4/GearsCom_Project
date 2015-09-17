@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Login</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="#{resource['/css/style.css']}" rel='stylesheet' type='text/css' />
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--webfonts-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' rel='stylesheet' type='text/css' />
+        <!--//webfonts-->
+    </head>
+    <body>
+
+        <div class="main">
+            <div class="login-form">
+                <h:link value="Inicio" outcome="index.xhtml" />
+                <h1>Login</h1>
+                <div class="head">
+                    <img src="#{resource['/Logos/Logo2.png']}" alt=""/>
+                </div>
+                <h:form>
+                    <h:outputLabel value="Nombre:"/>
+                    <h:inputText  id="nombreInputText" required="true"
+                                  requiredMessage="Por favor ingrese su nombre"
+                                  value="#{mbLogin.usuario}" 
+                                  validatorMessage="El nombre debe tener menos de 30 caracteres">
+                        
+                        <f:validateLength maximum="30" />
+                    </h:inputText>
+                    <h:message for="nombreInputText" styleClass="errorvalida"/>
+                    <h:outputLabel value="Contraseña:"/>
+
+                    <h:inputSecret id="contraseñaInputText" required="true"
+                                   requiredMessage="Por favor ingrese su contraseña"
+                                   value="#{mbLogin.contrasenia}"
+                                   validatorMessage="El nombre debe tener menos de 30 caracteres">
+                        <f:validateLength maximum="30" />
+                    </h:inputSecret>
+                    <div class="submit">
+                        <h:form>
+                            <h:commandButton type="submit" value="Ingresar" action="#{mbLogin.sesion()}" />
+                        </h:form>
+
+                    </div>	
+                    <p><a href="#">Recordar Contraseña?</a></p>
+                </h:form>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </body>
+</html>
+

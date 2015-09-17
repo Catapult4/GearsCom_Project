@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+
+               <h1>
+            <ui:insert name="title">Nuevo Pedido</ui:insert>
+        </h1>
+        <h:form id="formulario" rendered="#{beanPedido.flag2}">
+
+            <p>
+                <ui:insert name="body">Categorias</ui:insert>
+            </p>
+
+            <h:selectOneMenu value="#{beanPedido.categoria}">
+                <f:selectItems id="categoria" value="#{beanPedido.selectitem}" var="cat"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Buscar" type="submit" />
+            <br/>
+            <br/>
+            
+            <h:dataTable id="tabla" value="#{beanPedido.productos}" var="itemsp"
+                         rowClasses="oddRows, evenRows" headerClass="header"
+                         styleClass="table" cellpadding="5" cellspacing="0" 
+                         
+
+                         rendered="#{beanPedido.categoria ne null and beanPedido.flag2}">
+
+                <h:column rendered="false">
+                    <f:facet name="header">idProducto</f:facet>
+                    <h:outputText id="idpro" value="#{itemsp.idProducto}"/>
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Descripcion</f:facet>
+                    <h:outputText id="descripcion" value="#{itemsp.descripcion}" />
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Material</f:facet>
+                    <h:outputText value="#{itemsp.Nombre}" />
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cantidad</f:facet>
+                    <h:inputText id="cantidadP" required="true" 
+                                 requiredMessage="Ingrese una cantidad"
+                                 value="#{beanPedido.cantidad}"
+                                 validatorMessage="Ingrese sólo Numeros"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Agregar</f:facet>
+                    <h:commandButton id="btnAgrega" value="Agregar" type="submit" action="#{beanPedido.agregarProducto()}"  
+                                     actionListener="#{beanPedido.actionListenerAgregar}"/>
+
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+        <br/>
+        <hr/>
+        <h:form>
+            <h:dataTable id="carrito" value="#{beanPedido.temp}" var="prodCarrito"
+                         rendered="#{beanPedido.flag}">
+
+                <h:column rendered="false">
+                    <f:facet name="header">idProducto</f:facet>
+                    <h:outputText id="idprod" value="#{prodCarrito[0]}"/>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Descripcion</f:facet>
+                    <h:outputText value="#{prodCarrito[2]}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cantidad</f:facet>
+                    <h:inputText id="cantidadC" required="true" 
+                                 requiredMessage="Ingrese una cantidad"
+                                 value="#{prodCarrito[1]}"
+                                 validatorMessage="Ingrese sólo Numeros"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Modificar Cantidad</f:facet>
+                    <h:commandButton id="btnmodifica" value="Modificar" type="submit" />
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Retirar</f:facet>
+                    <h:commandButton id="btnAgregar" value="Retirar" type="submit" action="#{beanPedido.retirarProducto()}"
+                                     actionListener="#{beanPedido.actionListenerRetirar}"/>
+
+                </h:column>
+
+            </h:dataTable>
+
+            <h:commandButton value="Finalizar Compra" type="submit" action="#{beanPedido.cerrarProd()}" 
+                             rendered="#{beanPedido.flag and beanPedido.flag2}"/>
+            <h:commandButton value="Comprar" type="submit" action="#{beanPedido.cerrarCarro()}" 
+                             rendered="#{beanPedido.flag and beanPedido.flag2 eq false}"/>
+
+            
+
+        </h:form>
+        <h:panelGroup id="messagePanel" layout="block">
+            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        </h:panelGroup>
+        <h:form rendered="#{beanPedido.flag eq false and beanPedido.flag2 eq false and beanPedido.flag3 eq false}">
+            <h:panelGrid>
+                <h:outputLabel value="Fecha Pedido" for="fechaPedido" />
+                <p:calendar id="fechaPedido" value="#{beanPedido.fechaPedido}" pattern="MM-dd-yyyy" mask="true" 
+                            title="mm/dd/aaaa" required="true" requiredMessage="#{bundle.CreatePedidosRequiredMessage_fechaPedido}"  
+                            yearRange="c-10:c+10"/>
+                <h:outputLabel value="Transportadora" for="idTransportadora" />
+                <h:selectOneMenu id="idTransportadora" value="#{beanPedido.idTransportadora}" title="#{bundle.CreatePedidosTitle_idTransportadora}">
+                    <f:selectItems value="#{transportadoraController.itemsAvailableSelectOne}"/>
+                </h:selectOneMenu>
+                <f:param id="idUser" value="#{mbLogin.usuario}" />
+            </h:panelGrid>
+            <br />
+            <h:commandButton action="#{beanPedido.crearPedido()}" type="submit" value="Crear Pedido" actionListener="#{beanPedido.usuarioListener}"/>
+
+        </h:form>
+
+        <h:form rendered="#{beanPedido.flag3}">
+            
+                <h:outputText value="Pedido Completado"/>
+                <br/>
+                <h:outputText value="Informacion del Pedido"/>
+                <h:panelGrid columns="2">
+                
+                <h:outputLabel value="Fecha Pedido: " for="fechaPedido" />
+                <h:outputText value="#{beanPedido.fechaP}"/>
+                <h:outputLabel value="Transportadora: " for="idTransportadora" />
+                <h:outputText value="#{beanPedido.idTransportadora.nombreTransportadora}"/>
+                </h:panelGrid>
+                <h:outputText value ="Productos"/>
+                <h:dataTable id="carrito" value="#{beanPedido.temp}" var="prodCarrito">
+                <h:column>
+                    <f:facet name="header">Descripcion</f:facet>
+                    <h:outputText value="#{prodCarrito[2]}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cantidad</f:facet>
+                    <h:outputText value="#{prodCarrito[1]}"/>
+                </h:column>
+                
+            </h:dataTable>
+            
+            <br />
+           
+        </h:form>
+   
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

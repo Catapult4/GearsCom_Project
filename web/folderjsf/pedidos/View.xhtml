@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPedidosLabel_idPedido}"/>
+                    <h:outputText value="#{pedidosController.selected.idPedido}" title="#{bundle.ViewPedidosTitle_idPedido}"/>
+                    <h:outputText value="#{bundle.ViewPedidosLabel_fechaPedido}"/>
+                    <h:outputText value="#{pedidosController.selected.fechaPedido}" title="#{bundle.ViewPedidosTitle_fechaPedido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidosLabel_fechaEnvio}"/>
+                    <h:outputText value="#{pedidosController.selected.fechaEnvio}" title="#{bundle.ViewPedidosTitle_fechaEnvio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPedidosLabel_idTransportadora}"/>
+                    <h:outputText value="#{pedidosController.selected.idTransportadora}" title="#{bundle.ViewPedidosTitle_idTransportadora}"/>
+                    <h:outputText value="#{bundle.ViewPedidosLabel_idOrden}"/>
+                    <h:outputText value="#{pedidosController.selected.idOrden}" title="#{bundle.ViewPedidosTitle_idOrden}"/>
+                    <h:outputText value="#{bundle.ViewPedidosLabel_idCliente}"/>
+                    <h:outputText value="#{pedidosController.selected.idCliente}" title="#{bundle.ViewPedidosTitle_idCliente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pedidosController.destroyAndView}" value="#{bundle.ViewPedidosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPedidosEditLink}"/>
+                <br />
+                <h:commandLink action="#{pedidosController.prepareCreate}" value="#{bundle.ViewPedidosCreateLink}" />
+                <br />
+                <h:commandLink action="#{pedidosController.prepareList}" value="#{bundle.ViewPedidosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPedidosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

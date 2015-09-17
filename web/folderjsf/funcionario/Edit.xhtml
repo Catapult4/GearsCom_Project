@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_documento}" for="documento" />
+                        <h:inputText id="documento" value="#{funcionarioController.selected.documento}" title="#{bundle.EditFuncionarioTitle_documento}" required="true" requiredMessage="#{bundle.EditFuncionarioRequiredMessage_documento}"/>
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_nombre}" for="nombre" />
+                        <h:inputText id="nombre" value="#{funcionarioController.selected.nombre}" title="#{bundle.EditFuncionarioTitle_nombre}" required="true" requiredMessage="#{bundle.EditFuncionarioRequiredMessage_nombre}"/>
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_direccion}" for="direccion" />
+                        <h:inputText id="direccion" value="#{funcionarioController.selected.direccion}" title="#{bundle.EditFuncionarioTitle_direccion}" required="true" requiredMessage="#{bundle.EditFuncionarioRequiredMessage_direccion}"/>
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_celular}" for="celular" />
+                        <h:inputText id="celular" value="#{funcionarioController.selected.celular}" title="#{bundle.EditFuncionarioTitle_celular}" />
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_telefono}" for="telefono" />
+                        <h:inputText id="telefono" value="#{funcionarioController.selected.telefono}" title="#{bundle.EditFuncionarioTitle_telefono}" />
+                        <h:outputLabel value="#{bundle.EditFuncionarioLabel_idUsuario}" for="idUsuario" />
+                        <h:selectOneMenu id="idUsuario" value="#{funcionarioController.selected.idUsuario}" title="#{bundle.EditFuncionarioTitle_idUsuario}" required="true" requiredMessage="#{bundle.EditFuncionarioRequiredMessage_idUsuario}">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandLink action="#{funcionarioController.update}" value="#{bundle.EditFuncionarioSaveLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="View" value="#{bundle.EditFuncionarioViewLink}"/>
+                    <br />
+                    <h:commandLink action="#{funcionarioController.prepareList}" value="#{bundle.EditFuncionarioShowAllLink}" immediate="true"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.EditFuncionarioIndexLink}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

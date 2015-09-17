@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPedidosEmpty}" rendered="#{pedidosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pedidosController.items.rowCount > 0}">
+                    <h:outputText value="#{pedidosController.pagination.pageFirstItem + 1}..#{pedidosController.pagination.pageLastItem + 1}/#{pedidosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{pedidosController.previous}" value="#{bundle.Previous} #{pedidosController.pagination.pageSize}" rendered="#{pedidosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{pedidosController.next}" value="#{bundle.Next} #{pedidosController.pagination.pageSize}" rendered="#{pedidosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{pedidosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_idPedido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPedido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_fechaPedido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaPedido}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_fechaEnvio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEnvio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_idTransportadora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTransportadora}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_idOrden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrden}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPedidosTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{pedidosController.prepareView}" value="#{bundle.ListPedidosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pedidosController.prepareEdit}" value="#{bundle.ListPedidosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pedidosController.destroy}" value="#{bundle.ListPedidosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{pedidosController.prepareCreate}" value="#{bundle.ListPedidosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPedidosIndexLink}"/>
+            </h:form>
+         </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

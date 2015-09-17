@@ -1,0 +1,92 @@
+/*
+* Desarrollador: Eborio Linárez TSU en Informática
+* Sitio Web: http://todoprogramacion.com.ve
+* URL al post: http://todoprogramacion.com.ve/articulo/1/crear-efectos-hover-llamativos-con-css3-parte-i
+* Autor Original: Alessio Atzeni
+* Post Original: http://tympanus.net/codrops/2011/11/02/original-hover-effects-with-css3/
+*
+*
+*
+* NOTA: Te pido un pequeño agradecimiento de tu parte hacia mi por haber compartido
+* estos ejemplos. Puedes hacerlo de dos maneras muy sencillas:
+* 1.- Haciendo clic sobre los anuncios de Google Adsense que se encuentran presentes en mi sitio web
+* 2.- Haciendo un pequeño donativo a través del botón Donate de PayPal de mi sitio web
+*
+* Tu eliges la manera en la cual apoyar mis desarrollos. Te estaré enormemente agradecido 
+*
+*
+*
+* Ejemplos probados en los siguientes navegadores:
+* Google Chrome 22
+* Mozilla Firefox 16
+* Apple Safari 5.1.7
+* Internet Explorer 10
+* Opera Browser 12.02
+*/
+
+
+@font-face {
+    font-family: 'league_gothicregular';
+    src: url('fuentes/league_gothic-webfont.eot');
+    src: url('fuentes/league_gothic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fuentes/league_gothic-webfont.woff') format('woff'),
+        url('fuentes/league_gothic-webfont.ttf') format('truetype'),
+        url('fuentes/league_gothic-webfont.svg#league_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    background: url('../imagenes/fondo.png') repeat;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    font-family: 'league_gothicregular';
+    text-align: center;
+    margin: 40px 0;
+    text-shadow: 0 3px 1px hsl(0,0%,100%);
+}
+header {
+    text-transform: uppercase;
+    background: hsl(203,87%,60%);
+    border-bottom: 1px solid hsl(203,87%,30%);
+}
+header h1 {
+    margin: 0;
+    font-size: 40px;
+    color: hsl(0,0%,100%);
+    text-shadow: 0 3px 4px hsl(0,0%,0%);
+}
+nav ul {
+    height: 30px;
+    list-style: none;
+    text-align: center;
+    width: 520px;
+    margin: 0 auto 30px auto;
+    clear: both;
+}
+nav ul li a {
+    float: left;
+    width: 100px;
+    background: hsl(18,100%,50%);
+    margin: 0 2px;
+    padding: 5px 0;
+    color: hsl(0,0%,100%);
+    box-shadow: 0 1px 3px hsla(0,0%,0%,0.5);
+}
+nav ul li a:hover, nav ul li a.activo {
+    float: left;
+    width: 100px;
+    background: hsl(203,87%,45%);
+    margin: 0 2px;
+    padding: 5px 0;
+    color: hsl(0,0%,100%);
+    box-shadow: 0 1px 3px hsla(0,0%,0%,0.5);
+}
+.contenedor {
+    width: 1020px;
+    height: 220px;
+    margin: 0 auto;
+}

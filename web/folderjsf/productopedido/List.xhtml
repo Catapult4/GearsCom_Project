@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductopedidoEmpty}" rendered="#{productopedidoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productopedidoController.items.rowCount > 0}">
+                    <h:outputText value="#{productopedidoController.pagination.pageFirstItem + 1}..#{productopedidoController.pagination.pageLastItem + 1}/#{productopedidoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productopedidoController.previous}" value="#{bundle.Previous} #{productopedidoController.pagination.pageSize}" rendered="#{productopedidoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productopedidoController.next}" value="#{bundle.Next} #{productopedidoController.pagination.pageSize}" rendered="#{productopedidoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productopedidoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                      
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductopedidoTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductopedidoTitle_idProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductopedidoTitle_idPedido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPedido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productopedidoController.prepareView}" value="#{bundle.ListProductopedidoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productopedidoController.prepareEdit}" value="#{bundle.ListProductopedidoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productopedidoController.destroy}" value="#{bundle.ListProductopedidoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productopedidoController.prepareCreate}" value="#{bundle.ListProductopedidoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductopedidoIndexLink}"/>
+            </h:form>
+             </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

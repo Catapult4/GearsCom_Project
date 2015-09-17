@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <center><h1>Reportes</h1></center>
+                <h:panelGrid columns="4" class="containercompleto" >
+                    
+                    <h:form rendered="#{mbLogin.nombrerol=='Administrador' or (mbLogin.nombrerol=='Gerente Produccion')}">
+                        <h3>Productos</h3>
+
+                        <img src="../../resources/Iconos/pdf.png" height="25px" width="25px"></img> <h:commandLink class="reporte" value="Exportar pdf"  actionListener="#{personaBean.exportarPDF(actionEvent, 'ReporteProducto', '/reportes/Reporte_Producto.jasper')}"/>
+                        <img src="../../resources/Iconos/verpdf.jpg" height="25px" width="25px"></img><h:commandLink class="reporte" value="ver pdf"  actionListener="#{personaBean.verPDF(actionEvent, '/reportes/Reporte_Producto.jasper')}"/>
+                        <img src="../../resources/Iconos/excel.png" height="22px" width="22px"></img><h:commandLink class="reporte" value="Exportar Excel"  actionListener="#{personaBean.exportarExcel(actionEvent, 'ReporteProducto', '/reportes/Reporte_Producto.jasper')}"/>
+
+                        <h3>Materia Prima</h3>
+
+                        <img src="../../resources/Iconos/pdf.png" height="25px" width="25px"></img><h:commandLink class="reporte" value="Exportar pdf" actionListener="#{personaBean.exportarPDF(actionEvent, 'ReporteMateriaPrima', '/reportes/Reporte_MateriaPrima.jasper')}"  />
+                        <img src="../../resources/Iconos/verpdf.jpg" height="25px" width="25px"></img><h:commandLink class="reporte" value="ver pdf"  actionListener="#{personaBean.verPDF(actionEvent, '/reportes/Reporte_MateriaPrima.jasper')}"/>
+                        <img src="../../resources/Iconos/excel.png" height="22px" width="22px"></img><h:commandLink class="reporte" value="Exportar Excel"  actionListener="#{personaBean.exportarExcel(actionEvent,'ReporteMateriaPrima', '/reportes/Reporte_MateriaPrima.jasper')}"/>
+                    </h:form>
+
+                    <h:form rendered="#{mbLogin.nombrerol=='Cliente' or (mbLogin.nombrerol=='Administrador')}">
+                        <h3>Clientes</h3>
+
+                        <img src="../../resources/Iconos/pdf.png" height="25px" width="25px"></img> <h:commandLink class="reporte" value="Exportar pdf" actionListener="#{personaBean.exportarPDF(actionEvent, 'ReporteClientes', '/reportes/Reporte_Clientes.jasper')}"  />
+                        <img src="../../resources/Iconos/verpdf.jpg" height="25px" width="25px"></img> <h:commandLink class="reporte" value=" Ver pdf" actionListener="#{personaBean.verPDF(actionEvent, '/reportes/Reporte_Clientes.jasper')}" />
+                        <img src="../../resources/Iconos/excel.png" height="22px" width="22px"></img><h:commandLink class="reporte" value="Exportar Excel"  actionListener="#{personaBean.exportarExcel(actionEvent,'ReporteClientes', '/reportes/Reporte_Clientes.jasper')}"/>
+
+                         <h:form rendered="#{mbLogin.nombrerol=='Gerente Mercadeo' or (mbLogin.nombrerol=='Administrador')}">
+                        <h3>Pedidos</h3>
+                        <img src="../../resources/Iconos/pdf.png" height="25px" width="25px"></img> <h:commandLink class="reporte" value="Exportar pdf" actionListener="#{personaBean.exportarPDF(actionEvent, 'ReportePedidos', '/reportes/Reporte_Pedidos.jasper')}"  />
+                        <img src="../../resources/Iconos/verpdf.jpg" height="25px" width="25px"></img> <h:commandLink class="reporte" value="ver pdf"  actionListener="#{personaBean.verPDF(actionEvent, '/reportes/Reporte_Pedidos.jasper')}"/>
+                        <img src="../../resources/Iconos/excel.png" height="22px" width="22px"></img> <h:commandLink  class="reporte" value="Exportar Excel"  actionListener="#{personaBean.exportarExcel(actionEvent,'ReportePedidos', '/reportes/Reporte_Pedidos.jasper')}"/>  
+
+                    </h:form>
+                    </h:form>
+
+                   
+
+                </h:panelGrid>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

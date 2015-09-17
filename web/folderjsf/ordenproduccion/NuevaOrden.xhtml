@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h1>
+                    <ui:insert name="title">Nueva Orden</ui:insert>
+                </h1>
+                <h:form id="formulario" rendered="#{beanOrden.flag2}">
+
+                    <br/>
+                    <h:dataTable id="tabla" value="#{beanOrden.pedidos}" var="itemsp"
+                                 rowClasses="oddRows, evenRows" headerClass="header"
+                                 styleClass="table" cellpadding="5" cellspacing="0" 
+
+                                 >
+
+                        <h:column rendered="false">
+                            <f:facet name="header">idPedido</f:facet>
+                            <h:outputText id="idped" value="#{itemsp.idPedido}"/>
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Pedido</f:facet>
+                            <h:outputText id="fecha" value="#{itemsp.FechaPedido}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Empresa</f:facet>
+                            <h:outputText id="empresa" value="#{itemsp.Nombre_Empresa}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Agregar</f:facet>
+                            <h:commandButton id="btnAgrega" value="Agregar" type="submit" action="#{beanOrden.agregarPedido()}"  
+                                             actionListener="#{beanOrden.actionListenerAgregar}"/>
+
+                        </h:column>
+
+                    </h:dataTable>
+
+                </h:form>
+                <br/>
+                <hr/>
+                <h:form>
+                    <h:dataTable id="carrito" value="#{beanOrden.temp}" var="pedidosC"
+                                 rendered="#{beanOrden.flag}">
+
+                        <h:column rendered="false">
+                            <f:facet name="header">idPedido</f:facet>
+                            <h:outputText id="idPedi" value="#{pedidosC[0]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Empresa</f:facet>
+                            <h:outputText value="#{pedidosC[1]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Pedido</f:facet>
+                            <h:outputText value="#{pedidosC[2]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Retirar</f:facet>
+                            <h:commandButton id="btnAgregar" value="Retirar" type="submit" action="#{beanOrden.retirarProducto()}"
+                                             actionListener="#{beanOrden.actionListenerRetirar}"/>
+
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <h:commandButton value="Cerrar Orden" type="submit" action="#{beanOrden.cerrarProd()}" 
+                                     rendered="#{beanOrden.flag and beanOrden.flag2}"/>
+                    <h:commandButton value="Crear" type="submit" action="#{beanOrden.cerrarCarro()}" 
+                                     rendered="#{beanOrden.flag and beanOrden.flag2 eq false}"/>
+
+
+
+                </h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form rendered="#{beanOrden.flag eq false and beanOrden.flag2 eq false and beanOrden.flag3 eq false}">
+                    <h:panelGrid>
+                        <h:outputLabel value="Fecha Inicio" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" value="#{beanOrden.fechaInicio}" pattern="MM-dd-yyyy" mask="true" 
+                                    title="mm/dd/aaaa" required="true" requiredMessage="#{bundle.CreatePedidosRequiredMessage_fechaPedido}"  
+                                    yearRange="c-10:c+10"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{beanOrden.crearOrden()}" value="Crear" />
+                    <br />
+
+                </h:form>
+
+                <h:form rendered="#{beanOrden.flag3}">
+
+                    <h:outputText value="Orden Creada"/>
+                    <br/>
+                    <h:outputText value="Informacion de la Orden"/>
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Fecha Orden: "/>
+                        <h:outputText value="#{beanOrden.fechaOr}"/>
+                        <h:outputLabel value="Fecha Inicio: "/>
+                        <h:outputText value="#{beanOrden.fechaIn}"/>
+                    </h:panelGrid>
+                    <h:outputText value ="Productos"/>
+                    <h:dataTable id="carrito" value="#{beanOrden.productos}" var="items">
+                        <h:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{items.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cantidad</f:facet>
+                            <h:outputText value="#{items.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Materia Prima</f:facet>
+                            <h:outputText value="#{items.nombre}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br />
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

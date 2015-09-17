@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductopedidoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{productopedidoController.selected.cantidad}" title="#{bundle.EditProductopedidoTitle_cantidad}" required="true" requiredMessage="#{bundle.EditProductopedidoRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.EditProductopedidoLabel_idProducto}" for="idProducto" />
+                    <h:selectOneMenu id="idProducto" value="#{productopedidoController.selected.idProducto}" title="#{bundle.EditProductopedidoTitle_idProducto}" required="true" requiredMessage="#{bundle.EditProductopedidoRequiredMessage_idProducto}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductopedidoLabel_idPedido}" for="idPedido" />
+                    <h:selectOneMenu id="idPedido" value="#{productopedidoController.selected.idPedido}" title="#{bundle.EditProductopedidoTitle_idPedido}" required="true" requiredMessage="#{bundle.EditProductopedidoRequiredMessage_idPedido}">
+                        <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productopedidoController.update}" value="#{bundle.EditProductopedidoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductopedidoViewLink}"/>
+                <br />
+                <h:commandLink action="#{productopedidoController.prepareList}" value="#{bundle.EditProductopedidoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductopedidoIndexLink}" />
+            </h:form>
+           </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

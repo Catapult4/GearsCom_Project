@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Producto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6447dbb0-e485-45fc-bcd0-061203d9f290">
+	<property name="ireport.zoom" value="1.0245201830476058"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="28"/>
+	<queryString>
+		<![CDATA[SELECT
+     materiaprima.`Nombre` AS materiaprima_Nombre,
+     materiaprima.`CantidadMedida` AS materiaprima_CantidadMedida
+FROM
+     `materiaprima` materiaprima]]>
+	</queryString>
+	<field name="materiaprima_Nombre" class="java.lang.String"/>
+	<field name="materiaprima_CantidadMedida" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="54" width="228" height="25" uuid="b27d2967-5403-451c-88c8-bea0d234ca91"/>
+				<textElement>
+					<font fontName="Calibri" size="16"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE MATERIA PRIMA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="123" y="0" width="326" height="54" uuid="9e8deedf-fcd7-4e4a-baae-cfb5ab7cee62"/>
+				<imageExpression><![CDATA["Logo1.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="1" width="123" height="78" uuid="4e399e80-983b-495d-ad14-227fa0483be4"/>
+				<imageExpression><![CDATA["Logo2.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<image>
+				<reportElement x="449" y="-116" width="177" height="116" uuid="0091a32d-6fe5-4668-af15-e72cde4239b3"/>
+				<imageExpression><![CDATA["Encabezado.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="49" width="100" height="20" uuid="09227b90-5a2c-4802-80ce-8bfc1a998197"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="49" width="100" height="20" uuid="60da9090-7d9a-436d-8345-3ff71db6a767"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CantidadMedida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="100" height="24" uuid="5bcfa0b1-86a3-4e59-b900-f573d1b2f20c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materiaprima_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="100" height="24" uuid="bc0323a3-6be5-4e4a-81c9-c7d3d46c4a00"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materiaprima_CantidadMedida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="524" height="54" uuid="5e5c7884-d376-4a99-83a3-440f66649cc4"/>
+				<imageExpression><![CDATA["Logo_Inacoples1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

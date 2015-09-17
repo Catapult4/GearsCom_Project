@@ -1,0 +1,72 @@
+
+.colorll{
+    color: white;
+    text-align:  right;
+}
+
+.errorvalida
+{
+   color:red;
+}
+.butone{
+ 
+    text-align: right;
+}
+
+#content{
+    width: 100%;
+    height: 100%;
+  
+}
+
+html{
+      width: 1400px;
+    
+}
+
+#about-usa{
+    width: 1400px;
+    height: 365px;
+}
+#bottom{
+   width: 1400px;
+    height: 100px; 
+}
+.forli{
+    width: 1460px;
+    height: 330px;
+    margin:  0;
+}
+.formulogin{
+   
+  width: 75%;
+  margin: 0 auto;
+}
+
+.containercompleto{
+    text-align:  center;
+    width: 1300px;
+    height: 340px; 
+    
+}
+.reporte{
+    
+    color: black;
+}
+
+.submit1{
+    
+    text-align:  center;
+}
+
+.contenedorprincipal
+{
+    margin-left: 80px;
+    
+}
+
+.cierre{
+    
+    color: orange;
+   
+}

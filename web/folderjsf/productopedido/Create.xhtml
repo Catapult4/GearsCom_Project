@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateProductopedidoLabel_cantidad}" for="cantidad" />
+                        <h:inputText id="cantidad" value="#{productopedidoController.selected.cantidad}" title="#{bundle.CreateProductopedidoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductopedidoRequiredMessage_cantidad}"/>
+                        <h:outputLabel value="#{bundle.CreateProductopedidoLabel_idProducto}" for="idProducto" />
+                        <h:selectOneMenu id="idProducto" value="#{productopedidoController.selected.idProducto}" title="#{bundle.CreateProductopedidoTitle_idProducto}" required="true" requiredMessage="#{bundle.CreateProductopedidoRequiredMessage_idProducto}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateProductopedidoLabel_idPedido}" for="idPedido" />
+                        <h:selectOneMenu id="idPedido" value="#{productopedidoController.selected.idPedido}" title="#{bundle.CreateProductopedidoTitle_idPedido}" required="true" requiredMessage="#{bundle.CreateProductopedidoRequiredMessage_idPedido}">
+                            <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{productopedidoController.create}" value="#{bundle.CreateProductopedidoSaveLink}" />
+                    <br />
+                    <br />
+                    <h:commandLink action="#{productopedidoController.prepareList}" value="#{bundle.CreateProductopedidoShowAllLink}" immediate="true"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.CreateProductopedidoIndexLink}"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

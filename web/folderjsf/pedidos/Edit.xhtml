@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_idPedido}" for="idPedido" />
+                    <h:inputText id="idPedido" value="#{pedidosController.selected.idPedido}" title="#{bundle.EditPedidosTitle_idPedido}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_idPedido}"/>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_fechaPedido}" for="fechaPedido" />
+                    <h:inputText id="fechaPedido" value="#{pedidosController.selected.fechaPedido}" title="#{bundle.EditPedidosTitle_fechaPedido}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_fechaPedido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_fechaEnvio}" for="fechaEnvio" />
+                    <h:inputText id="fechaEnvio" value="#{pedidosController.selected.fechaEnvio}" title="#{bundle.EditPedidosTitle_fechaEnvio}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_fechaEnvio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_idTransportadora}" for="idTransportadora" />
+                    <h:selectOneMenu id="idTransportadora" value="#{pedidosController.selected.idTransportadora}" title="#{bundle.EditPedidosTitle_idTransportadora}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_idTransportadora}">
+                        <f:selectItems value="#{transportadoraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_idOrden}" for="idOrden" />
+                    <h:selectOneMenu id="idOrden" value="#{pedidosController.selected.idOrden}" title="#{bundle.EditPedidosTitle_idOrden}" >
+                        <f:selectItems value="#{ordenproduccionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPedidosLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{pedidosController.selected.idCliente}" title="#{bundle.EditPedidosTitle_idCliente}" required="true" requiredMessage="#{bundle.EditPedidosRequiredMessage_idCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pedidosController.update}" value="#{bundle.EditPedidosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPedidosViewLink}"/>
+                <br />
+                <h:commandLink action="#{pedidosController.prepareList}" value="#{bundle.EditPedidosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPedidosIndexLink}" />
+            </h:form>
+        </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

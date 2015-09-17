@@ -1,0 +1,112 @@
+<!--
+* Desarrollador: Eborio Linárez TSU en Informática
+* Sitio Web: http://todoprogramacion.com.ve
+* URL al post: http://todoprogramacion.com.ve/articulos/bootstrap/menu-desplegable-con-hover-en-bootstrap
+*
+*
+*
+* NOTA: Te pido un pequeño agradecimiento de tu parte hacia mi por haber compartido
+* estos ejemplos. Puedes hacerlo de dos maneras muy sencillas:
+* 1.- Haciendo clic sobre los anuncios de Google Adsense que se encuentran presentes en mi sitio web
+* 2.- Haciendo un pequeño donativo a través del botón Donate de PayPal de mi sitio web
+*
+* Tu eliges la manera en la cual apoyar mis desarrollos. Te estaré enormemente agradecido 
+*/
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menú desplegable con hover en Bootstrap</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="css/default.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="http://todoprogramacion.com.ve"><h1>Todo Programación</h1></a>
+        </header>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <h1>Menú desplegable con hover en Bootstrap</h1>
+                <div class="span10 offset2">
+                    <h4>Puedes utilizarlo en todos los elementos desplegables, como menús, tabs, pills y botones.</h4>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Acción <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Acción <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Peligro <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Advertencia <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Satisfactorio <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Información <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Inverso <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Acción</a></li>
+                                <li><a href="#">Otra acción</a></li>
+                                <li><a href="#">Otro menú</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Link Separado</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
+    </body>
+</html>

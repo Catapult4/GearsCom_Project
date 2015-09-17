@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMateriaprimaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{materiaprimaController.selected.nombre}" title="#{bundle.CreateMateriaprimaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMateriaprimaRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateMateriaprimaLabel_cantidadMedida}" for="cantidadMedida" />
+                    <h:inputText id="cantidadMedida" value="#{materiaprimaController.selected.cantidadMedida}" title="#{bundle.CreateMateriaprimaTitle_cantidadMedida}" />
+                    <h:outputLabel value="#{bundle.CreateMateriaprimaLabel_idMedida}" for="idMedida" />
+                    <h:selectOneMenu id="idMedida" value="#{materiaprimaController.selected.idMedida}" title="#{bundle.CreateMateriaprimaTitle_idMedida}" required="true" requiredMessage="#{bundle.CreateMateriaprimaRequiredMessage_idMedida}">
+                        <f:selectItems value="#{unidadmedidaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{materiaprimaController.create}" value="#{bundle.CreateMateriaprimaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{materiaprimaController.prepareList}" value="#{bundle.CreateMateriaprimaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMateriaprimaIndexLink}"/>
+            </h:form>
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

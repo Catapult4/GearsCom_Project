@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_documento}"/>
+                        <h:outputText value="#{funcionarioController.selected.documento}" title="#{bundle.ViewFuncionarioTitle_documento}"/>
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_nombre}"/>
+                        <h:outputText value="#{funcionarioController.selected.nombre}" title="#{bundle.ViewFuncionarioTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_direccion}"/>
+                        <h:outputText value="#{funcionarioController.selected.direccion}" title="#{bundle.ViewFuncionarioTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_celular}"/>
+                        <h:outputText value="#{funcionarioController.selected.celular}" title="#{bundle.ViewFuncionarioTitle_celular}"/>
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_telefono}"/>
+                        <h:outputText value="#{funcionarioController.selected.telefono}" title="#{bundle.ViewFuncionarioTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewFuncionarioLabel_idUsuario}"/>
+                        <h:outputText value="#{funcionarioController.selected.idUsuario}" title="#{bundle.ViewFuncionarioTitle_idUsuario}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{funcionarioController.destroyAndView}" value="#{bundle.ViewFuncionarioDestroyLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="Edit" value="#{bundle.ViewFuncionarioEditLink}"/>
+                    <br />
+                    <h:commandLink action="#{funcionarioController.prepareCreate}" value="#{bundle.ViewFuncionarioCreateLink}" />
+                    <br />
+                    <h:commandLink action="#{funcionarioController.prepareList}" value="#{bundle.ViewFuncionarioShowAllLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ViewFuncionarioIndexLink}"/>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

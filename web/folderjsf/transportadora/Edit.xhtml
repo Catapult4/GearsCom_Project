@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        
+                        <h:outputLabel value="#{bundle.EditTransportadoraLabel_nombreTransportadora}" for="nombreTransportadora" />
+                        <h:inputText id="nombreTransportadora" value="#{transportadoraController.selected.nombreTransportadora}" title="#{bundle.EditTransportadoraTitle_nombreTransportadora}" required="true" requiredMessage="#{bundle.EditTransportadoraRequiredMessage_nombreTransportadora}"/>
+                        <h:outputLabel value="#{bundle.EditTransportadoraLabel_telefonoTransportadora}" for="telefonoTransportadora" />
+                        <h:inputText id="telefonoTransportadora" value="#{transportadoraController.selected.telefonoTransportadora}" title="#{bundle.EditTransportadoraTitle_telefonoTransportadora}" required="true" requiredMessage="#{bundle.EditTransportadoraRequiredMessage_telefonoTransportadora}"/>
+                    </h:panelGrid>
+                    <h:commandLink action="#{transportadoraController.update}" value="#{bundle.EditTransportadoraSaveLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="View" value="#{bundle.EditTransportadoraViewLink}"/>
+                    <br />
+                    <h:commandLink action="#{transportadoraController.prepareList}" value="#{bundle.EditTransportadoraShowAllLink}" immediate="true"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.EditTransportadoraIndexLink}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

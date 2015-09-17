@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h1>
+                    <ui:insert name="title">Completar Orden</ui:insert>
+                </h1>
+                <h:form id="formulario" rendered="#{beanCompletar.flag2}">
+
+                    <br/>
+                    <h:dataTable id="tabla" value="#{beanCompletar.ordenes}" var="itemsp"
+                                 rowClasses="oddRows, evenRows" headerClass="header"
+                                 styleClass="table" cellpadding="5" cellspacing="0" 
+
+                                 >
+
+                        <h:column rendered="false">
+                            <f:facet name="header">idOrden</f:facet>
+                            <h:outputText id="idord" value="#{itemsp.idOrden}"/>
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Orden</f:facet>
+                            <h:outputText id="fechaOr" value="#{itemsp.FechaOrden}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Inicio</f:facet>
+                            <h:outputText id="fechaIn" value="#{itemsp.FechaInicio}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Agregar</f:facet>
+                            <h:commandButton id="btnAgrega" value="Agregar" type="submit" action="#{beanCompletar.agregarOrden()}"  
+                                             actionListener="#{beanCompletar.actionListenerAgregar}"/>
+
+                        </h:column>
+
+                    </h:dataTable>
+
+                </h:form>
+                <br/>
+                <hr/>
+                <h:form>
+                    <h:dataTable id="carrito" value="#{beanCompletar.temp}" var="ordenes"
+                                 rendered="#{beanCompletar.flag}">
+
+                        <h:column rendered="false">
+                            <f:facet name="header">idOrden</f:facet>
+                            <h:outputText id="idOrde" value="#{ordenes[0]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Orden</f:facet>
+                            <h:outputText value="#{ordenes[1]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha Inicio</f:facet>
+                            <h:outputText value="#{ordenes[2]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Retirar</f:facet>
+                            <h:commandButton id="btnAgregar" value="Retirar" type="submit" action="#{beanCompletar.retirarOrden()}"
+                                             actionListener="#{beanCompletar.actionListenerRetirar}"/>
+
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <h:commandButton value="Cerrar Orden" type="submit" action="#{beanCompletar.cerrarOrd()}" 
+                                     rendered="#{beanCompletar.flag and beanCompletar.flag2}"/>
+                    <h:commandButton value="Crear" type="submit" action="#{beanCompletar.cerrarCarro()}" 
+                                     rendered="#{beanCompletar.flag and beanCompletar.flag2 eq false}"/>
+
+
+
+                </h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form rendered="#{beanCompletar.flag eq false and beanCompletar.flag2 eq false and beanCompletar.flag3 eq false}">
+                    <h:panelGrid>
+                        <h:outputLabel value="Fecha Finalizacion" for="fechaFin" />
+                        <p:calendar id="fechaFin" value="#{beanCompletar.fechaF}" pattern="MM-dd-yyyy" mask="true" 
+                                    title="mm/dd/aaaa" required="true" requiredMessage="#{bundle.CreatePedidosRequiredMessage_fechaPedido}"  
+                                    yearRange="c-10:c+10"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandButton action="#{beanCompletar.cerrarOrden()}" value="Crear" />
+                    <br />
+
+                </h:form>
+
+                <h:form rendered="#{beanCompletar.flag3}">
+
+                    <h:outputText value="Completado"/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Fecha Finalizacion: "/>
+                        <h:outputText value="#{beanCompletar.fechaFinal}"/>
+                    </h:panelGrid>
+
+                    <br />
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewClienteLabel_nombreEmpresa}"/>
+                        <h:outputText value="#{clienteController.selected.nombreEmpresa}" title="#{bundle.ViewClienteTitle_nombreEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_nombreContacto}"/>
+                        <h:outputText value="#{clienteController.selected.nombreContacto}" title="#{bundle.ViewClienteTitle_nombreContacto}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_telefono}"/>
+                        <h:outputText value="#{clienteController.selected.telefono}" title="#{bundle.ViewClienteTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_celular}"/>
+                        <h:outputText value="#{clienteController.selected.celular}" title="#{bundle.ViewClienteTitle_celular}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_nit}"/>
+                        <h:outputText value="#{clienteController.selected.nit}" title="#{bundle.ViewClienteTitle_nit}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_documentoContacto}"/>
+                        <h:outputText value="#{clienteController.selected.documentoContacto}" title="#{bundle.ViewClienteTitle_documentoContacto}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_direccion}"/>
+                        <h:outputText value="#{clienteController.selected.direccion}" title="#{bundle.ViewClienteTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_EMail}"/>
+                        <h:outputText value="#{clienteController.selected.EMail}" title="#{bundle.ViewClienteTitle_EMail}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_idUsuario}"/>
+                        <h:outputText value="#{clienteController.selected.idUsuario}" title="#{bundle.ViewClienteTitle_idUsuario}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{clienteController.destroyAndView}" value="#{bundle.ViewClienteDestroyLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="Edit" value="#{bundle.ViewClienteEditLink}"/>
+                    <br />
+                    <h:commandLink action="#{clienteController.prepareCreate}" value="#{bundle.ViewClienteCreateLink}" />
+                    <br />
+                    <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.ViewClienteShowAllLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ViewClienteIndexLink}"/>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

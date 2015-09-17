@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListFuncionarioEmpty}" rendered="#{funcionarioController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{funcionarioController.items.rowCount > 0}">
+                        <h:outputText value="#{funcionarioController.pagination.pageFirstItem + 1}..#{funcionarioController.pagination.pageLastItem + 1}/#{funcionarioController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{funcionarioController.previous}" value="#{bundle.Previous} #{funcionarioController.pagination.pageSize}" rendered="#{funcionarioController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{funcionarioController.next}" value="#{bundle.Next} #{funcionarioController.pagination.pageSize}" rendered="#{funcionarioController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{funcionarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_documento}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.documento}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_nombre}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_direccion}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.direccion}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_celular}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.celular}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_telefono}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.telefono}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFuncionarioTitle_idUsuario}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idUsuario}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{funcionarioController.prepareView}" value="#{bundle.ListFuncionarioViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{funcionarioController.prepareEdit}" value="#{bundle.ListFuncionarioEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{funcionarioController.destroy}" value="#{bundle.ListFuncionarioDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{funcionarioController.prepareCreate}" value="#{bundle.ListFuncionarioCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ListFuncionarioIndexLink}"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

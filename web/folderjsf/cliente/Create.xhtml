@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nombreEmpresa}" for="nombreEmpresa" />
+                    <h:inputText id="nombreEmpresa" value="#{clienteController.selected.nombreEmpresa}" title="#{bundle.CreateClienteTitle_nombreEmpresa}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombreEmpresa}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nombreContacto}" for="nombreContacto" />
+                    <h:inputText id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.CreateClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_nombreContacto}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.CreateClienteTitle_telefono}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_celular}" for="celular" />
+                    <h:inputText id="celular" value="#{clienteController.selected.celular}" title="#{bundle.CreateClienteTitle_celular}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_nit}" for="nit" />
+                    <h:inputText id="nit" value="#{clienteController.selected.nit}" title="#{bundle.CreateClienteTitle_nit}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_nit}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_documentoContacto}" for="documentoContacto" />
+                    <h:inputText id="documentoContacto" value="#{clienteController.selected.documentoContacto}" title="#{bundle.CreateClienteTitle_documentoContacto}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_documentoContacto}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{clienteController.selected.direccion}" title="#{bundle.CreateClienteTitle_direccion}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_EMail}" for="EMail" />
+                    <h:inputText id="EMail" value="#{clienteController.selected.EMail}" title="#{bundle.CreateClienteTitle_EMail}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_EMail}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{clienteController.selected.idUsuario}" title="#{bundle.CreateClienteTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clienteController.create}" value="#{bundle.CreateClienteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.CreateClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClienteIndexLink}"/>
+            </h:form>
+         </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

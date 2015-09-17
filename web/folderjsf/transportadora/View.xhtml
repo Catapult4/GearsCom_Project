@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+
+        <ui:composition template="./../../WEB-INF/Template1.xhtml">
+
+            <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                   
+                    <h:outputText value="#{bundle.ViewTransportadoraLabel_nombreTransportadora}"/>
+                    <h:outputText value="#{transportadoraController.selected.nombreTransportadora}" title="#{bundle.ViewTransportadoraTitle_nombreTransportadora}"/>
+                    <h:outputText value="#{bundle.ViewTransportadoraLabel_telefonoTransportadora}"/>
+                    <h:outputText value="#{transportadoraController.selected.telefonoTransportadora}" title="#{bundle.ViewTransportadoraTitle_telefonoTransportadora}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{transportadoraController.destroyAndView}" value="#{bundle.ViewTransportadoraDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTransportadoraEditLink}"/>
+                <br />
+                <h:commandLink action="#{transportadoraController.prepareCreate}" value="#{bundle.ViewTransportadoraCreateLink}" />
+                <br />
+                <h:commandLink action="#{transportadoraController.prepareList}" value="#{bundle.ViewTransportadoraShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTransportadoraIndexLink}"/>
+
+            </h:form>
+          </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
